@@ -1,4 +1,5 @@
 
+from random import randint
 class Individuo:
     """Classe responsável por determinar atributos e operações no Indivíduo"""
     # n              --> Tamanho máximo do cromossomo
@@ -11,18 +12,20 @@ class Individuo:
     # intervalMin    --> Menor valor de x (raiz) na função fitness
     # intervalMax    --> Maior valor de x (raiz) da função fitness
 
-    def __init__(self,tam,randit,ambiente,minVal,maxVal):
+    numAleatorio = {}
+
+    def __init__(self,tam,ambiente,minVal,maxVal):
         # Atributos internos do Indivíduo:
         self.fenotipo = 0
         self.fenNormalizado = 0
         self.adaptabilidade = 0
         self.cromossomo = []
+        self.numAleatorio = randint
         # Atributos Vindos Do Parâmetro de Construção:
         for i in range(tam):
-            self.cromossomo.append(randit(0,1))
+            self.cromossomo.append(self.numAleatorio(0,1))
         self.n = tam
         self.funcaoFitness = ambiente
-        self.numAleatorio = randit
         self.intervalMin = minVal
         self.intervalMax = maxVal
 
@@ -67,15 +70,16 @@ class Individuo:
             print("Não é possível clonar Individuos com o tamanho do cromossomo difentes")
 
 
-    def imprimirIndividuo(self):
-        print("Cromossomo1: ",self.cromossomo)
-        print("Tamanho: ",self.n);
-        print("fenótipo: ",self.fenotipo);
-        print("fenótipo Normalizado: ",self.fenNormalizado);
-        print("Adaptabilidade: ",self.adaptabilidade);
-        print("Fitness: ",self.funcaoFitness);
-        print("xMin: ",self.intervalMin);
-        print("xMax: ",self.intervalMax);
+    def showIndividuo(self):
+        print("Cromossomo: ",self.cromossomo)
+        print("Tamanho: ",self.n)
+        print("fenótipo: ",self.fenotipo)
+        print("fenótipo Normalizado: ",self.fenNormalizado)
+        print("Adaptabilidade: ",self.adaptabilidade)
+        print("Fitness: ",self.funcaoFitness)
+        print("xMin: ",self.intervalMin)
+        print("xMax: ",self.intervalMax)
+        print("--------------------------------------------------------------")
 
     def mutacao(self):
         aux = self.numAleatorio(0,(self.n -1))
@@ -83,5 +87,5 @@ class Individuo:
             self.cromossomo[aux] = 0
         else:
             self.cromossomo[aux] = 1
-        #print("Novo Cromossomo: ",self.cromossomo," Index: ",aux)
+        self.pressaoAmbiente()
         

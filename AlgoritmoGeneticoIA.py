@@ -1,20 +1,16 @@
-from random import randint
-import individuo
 
+import populacao
 if __name__ == '__main__':
-    objInd1 = individuo.Individuo(10,randint,"(x^2)-(5x)+6",0,6)
-    #objInd2 = individuo.Individuo(10,randint,"(x^2)-(5x)+6",0,6)
+    objPop = populacao.Populacao(3,10,"FitnessFunction",0,6)
+    print("Indivíduos Antes da mutação:")
+    objPop.showPopulacao()
+    objPop.buscarMelhorIndviduo()
+    objPop.showMelhoresIndividuos()
 
-    objInd1.pressaoAmbiente()
-    #objInd2.recebeDados(objInd1)
-
-    print("Dados Do Indivíduo 1 antes da mutação:")
-    objInd1.imprimirIndividuo()
-
-    objInd1.mutacao()
-    objInd1.pressaoAmbiente()
-
-    print("---------------------------------------------------------------------")
-    print("Dados Do Indivíduo 1 depois da mutação:")
-    objInd1.imprimirIndividuo()
+    objPop.mutacaoIndividuos()
+    print("-----------------------------------------------------------------")
+    print("Indivíduos Depois da Mutação")
+    objPop.showPopulacao()
+    objPop.buscarMelhorIndviduo()
+    objPop.showMelhoresIndividuos()
     
